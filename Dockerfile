@@ -23,4 +23,4 @@ RUN apk update \
     && apk add ca-certificates \
     && rm -rf /var/cache/apk/*
 COPY --from=build /go/src/resume-server/server .
-ENTRYPOINT ["./main"]
+ENTRYPOINT ["./server"]
