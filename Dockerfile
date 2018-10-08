@@ -1,4 +1,4 @@
-FROM golang:1.11 as build
+FROM golang:1.11-alpine as build
 
 RUN mkdir -p /go/src \
     && mkdir -p /go/bin \
