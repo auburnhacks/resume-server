@@ -1,0 +1,23 @@
+branches:
+  only:
+    - master
+sudo: required
+dist: trusty
+language: ruby
+services:
+  - docker
+script: |
+  (
+    set -exuo pipefail
+    git_sha=$(git rev-parse HEAD)
+    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    docker build -t $DOCKER_USERNAME/resume-server:$git_sha -t $DOCKER_USERNAME/resume-server:latest -f Dockerfile .
+    docker build $DOCKER_USERNAME/resume-server:$git_sha
+    docker build $DOCKER_USERNAME/resume-server:latest
+  )
+notifications:
+  email:
+    - szd0053@tigermail.auburn.edu
+    - tzj0019@tigermail.auburn.edu
+  on_success: always
+  on_failure: always
