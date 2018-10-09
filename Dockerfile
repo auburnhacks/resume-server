@@ -1,4 +1,4 @@
-FROM golang:1.11-alpine as build
+FROM golang:1.10-alpine as build
 
 RUN mkdir -p /go/src \
     && mkdir -p /go/bin \
@@ -12,6 +12,7 @@ RUN apk update && apk add git
 RUN go get -u github.com/golang/dep/cmd/dep
 COPY Gopkg.* ./
 RUN dep ensure -vendor-only
+RUN go get -u github.com/satori/go.uuid
 COPY . .
 RUN CGO_ENABLED=0 go install -a std
 RUN CGO_ENABLED=0 GOOS='linux' go build -a -ldflags '-extldflags "-static"' -installsuffix cgo -o server .
