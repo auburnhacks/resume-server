@@ -12,7 +12,7 @@ RUN apk update && apk add git
 RUN go get -u github.com/golang/dep/cmd/dep
 COPY Gopkg.* ./
 RUN dep ensure -vendor-only
-RUN dep ensure -add github.com/mongodb/mongo-go-driver/mongo
+RUN go get -u github.com/mongodb/mongo-go-driver/bson
 COPY . .
 RUN CGO_ENABLED=0 go install -a std
 RUN CGO_ENABLED=0 GOOS='linux' go build -a -ldflags '-extldflags "-static"' -installsuffix cgo -o server .
@@ -24,4 +24,4 @@ RUN apk update \
     && apk add ca-certificates \
     && rm -rf /var/cache/apk/*
 COPY --from=build /go/src/resume-server/server .
-ENTRYPOINT ["./server"]
+ENTRYPOINT [ "./server" ]
