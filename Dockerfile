@@ -11,8 +11,13 @@ WORKDIR $GOPATH/src/resume-server
 RUN apk update && apk add git
 RUN go get -u github.com/golang/dep/cmd/dep
 COPY Gopkg.* ./
-RUN dep ensure -vendor-only
+# RUN dep ensure -vendor-only
+RUN go get -u github.com/golang/glog
+RUN go get -u github.com/gorilla/mux
 RUN go get -u github.com/satori/go.uuid
+RUN go get -u cloud.google.com/go/storage
+RUN go get -u github.com/mongodb/mongo-go-driver/mongo
+RUN go get -u github.com/mongodb/mongo-go-driver/bson
 COPY . .
 RUN CGO_ENABLED=0 go install -a std
 RUN CGO_ENABLED=0 GOOS='linux' go build -a -ldflags '-extldflags "-static"' -installsuffix cgo -o server .
