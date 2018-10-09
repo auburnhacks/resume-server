@@ -12,6 +12,8 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/mongodb/mongo-go-driver/bson/bsoncodec"
+
 	"cloud.google.com/go/storage"
 	"github.com/golang/glog"
 	"github.com/mongodb/mongo-go-driver/bson"
@@ -127,7 +129,7 @@ func (r *Resume) Upload() error {
 // Save is a function that saves an instance of a resume to
 // mongodb and returns an error if any
 func (r *Resume) Save(ctx context.Context) error {
-	doc, err := bson.Marshal(r)
+	doc, err := bsoncodec.Marshal(r)
 	if err != nil {
 		return err
 	}
@@ -176,7 +178,7 @@ func getAllResumes(ctx context.Context) ([]Resume, error) {
 		if err != nil {
 			return nil, err
 		}
-		if err := bson.Unmarshal(br, &r); err != nil {
+		if err := bsoncodec.Unmarshal(br, &r); err != nil {
 			return nil, err
 		}
 		resumes = append(resumes, r)
