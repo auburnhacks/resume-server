@@ -12,8 +12,8 @@ script: |
     git_sha=$(git rev-parse HEAD)
     docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     docker build -t $DOCKER_USERNAME/resume-server:$git_sha -t $DOCKER_USERNAME/resume-server:latest -f Dockerfile .
-    docker build $DOCKER_USERNAME/resume-server:$git_sha
-    docker build $DOCKER_USERNAME/resume-server:latest
+    docker push $DOCKER_USERNAME/resume-server:$git_sha
+    docker push $DOCKER_USERNAME/resume-server:latest
   )
 notifications:
   email:
