@@ -2,7 +2,8 @@
 
 
 [[projects]]
-  digest = "1:197df5f5c8728853faed5c09293181a8f69cffffa5b6610ba6e0acf21b51f6bd"
+  branch = "master"
+  digest = "1:142579b97427157dd426c48b1c7135b27b7b9e08d01517b9356d3e0d69984420"
   name = "cloud.google.com/go"
   packages = [
     "compute/metadata",
@@ -14,8 +15,7 @@
     "storage",
   ]
   pruneopts = "UT"
-  revision = "dfffe386c33fb24c34ee501e5723df5b97b98514"
-  version = "v0.30.0"
+  revision = "21a9387fc271acc55dae83f64504f452adf837d5"
 
 [[projects]]
   digest = "1:35ac403a135b8a138870950720be1f0399e0a48387d4b5cca841b0ed8cf7a40b"
@@ -72,22 +72,15 @@
   version = "v2.0.0"
 
 [[projects]]
-  digest = "1:c79fb010be38a59d657c48c6ba1d003a8aa651fa56b579d959d74573b7dff8e1"
-  name = "github.com/gorilla/context"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "08b5f424b9271eedf6f9f0ce86cb9396ed337a42"
-  version = "v1.1.1"
-
-[[projects]]
-  digest = "1:e73f5b0152105f18bc131fba127d9949305c8693f8a762588a82a48f61756f5f"
+  branch = "master"
+  digest = "1:068288ad0724a7f57e7ca4def6324575dd474c377c8cc4f4ca52c56fade23a19"
   name = "github.com/gorilla/mux"
   packages = ["."]
   pruneopts = "UT"
-  revision = "e3702bed27f0d39777b0b37b664b6280e8ef8fbf"
-  version = "v1.6.2"
+  revision = "9e1f5955c0d22b55d9e20d6faa28589f83b2faca"
 
 [[projects]]
+  branch = "master"
   digest = "1:bf8079a82a9d26fbfe7ea6b886878b0f3d8d00b174e364b024ca5c50e59c8d92"
   name = "github.com/mongodb/mongo-go-driver"
   packages = [
@@ -145,16 +138,15 @@
     "mongo/updateopt",
   ]
   pruneopts = "UT"
-  revision = "71de844febff6ac5b6fc6ba165e24e9677d2ee05"
-  version = "v0.0.15"
+  revision = "b7c48f55d6469f48a4786deeb792539806a8d218"
 
 [[projects]]
-  digest = "1:274f67cb6fed9588ea2521ecdac05a6d62a8c51c074c1fccc6a49a40ba80e925"
+  branch = "master"
+  digest = "1:ff6b0586c0621a76832cf783eee58cbb9d9795d2ce8acbc199a4131db11c42a9"
   name = "github.com/satori/go.uuid"
   packages = ["."]
   pruneopts = "UT"
-  revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
-  version = "v1.2.0"
+  revision = "36e9d2ebbde5e3f13ab2e25625fd453271d6522e"
 
 [[projects]]
   digest = "1:8e214e348491ae6a1a79c5bb728ed4eca7f1a2892cd66ad11f46558d684333f4"
@@ -199,7 +191,7 @@
   name = "golang.org/x/crypto"
   packages = ["pbkdf2"]
   pruneopts = "UT"
-  revision = "e3636079e1a4c1f337f212cc5cd2aca108f6c900"
+  revision = "7c1a557ab941a71c619514f229f0b27ccb0c27cf"
 
 [[projects]]
   branch = "master"
@@ -287,7 +279,7 @@
     "transport/http/internal/propagation",
   ]
   pruneopts = "UT"
-  revision = "c21459d81882ee61fcd6631fb94dbd9a29bd4377"
+  revision = "ce4acf611b3920b111e21272a15ddaea10c1fd2e"
 
 [[projects]]
   digest = "1:193950893ea275f89ed92e5da11ed8fa1436872f755a9ea5d4afa83dc9d9c3a8"
@@ -364,6 +356,7 @@
     "github.com/golang/glog",
     "github.com/gorilla/mux",
     "github.com/mongodb/mongo-go-driver/bson",
+    "github.com/mongodb/mongo-go-driver/bson/bsoncodec",
     "github.com/mongodb/mongo-go-driver/mongo",
     "github.com/satori/go.uuid",
   ]
