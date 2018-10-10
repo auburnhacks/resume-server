@@ -115,11 +115,11 @@ func (r *Resume) Upload() error {
 	// TODO: change the ACL rules to be anything other than public, look at signedURL's
 	wc.ACL = []storage.ACLRule{{Entity: storage.AllUsers, Role: storage.RoleReader}}
 	if _, err := io.Copy(wc, r.file); err != nil {
-		glog.Fatalf("Error: %s", err.Error())
+		glog.Errorf("Error: %s", err.Error())
 		return err
 	}
 	if err := wc.Close(); err != nil {
-		glog.Fatalf("Error: %s", err.Error())
+		glog.Errorf("Error: %s", err.Error())
 		return err
 	}
 	r.URL = fmt.Sprintf(GCSPubURL, string(*gcsBucket), string(r.Name))

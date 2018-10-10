@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/base64"
 	"encoding/json"
-	"errors"
 	"flag"
 	"fmt"
 	"net/http"
@@ -82,13 +81,7 @@ func main() {
 		os.Exit(1)
 	}
 	ResumeCollection = MongoClient.Database("resumes").Collection("resumes_19")
-	// save the gcs credentials before init
-	if *GCSCredentials == "cluster" {
-		if err := downloadGCSCredentials(); err != nil {
-			glog.Fatalf("error: %v", err)
-			os.Exit(1)
-		}
-	}
+
 	// init GCS
 	if err := GCSInit(ctx); err != nil {
 		glog.Fatalf("error: %v", err)
@@ -358,31 +351,6 @@ func enableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("X-Served-Host", Hostname)
 }
 
-// downloadedGCSCredentials is a helper that is run to download the gcs credentials from
-// env variable provisioned by kubernetes
-func downloadGCSCredentials() error {
-	// Looks for GCS_CREDENTIALS env variable
-	if credData := os.Getenv("GCS_CREDENTIALS"); credData != "" {
-		wd, err := os.Getwd()
-		if err != nil {
-			return err
-		}
-		credPath := filepath.Join(wd, CredFileName)
-		f, err := os.Create(credPath)
-		if err != nil {
-			return err
-		}
-		defer f.Close()
-		_, err = f.Write([]byte(credData))
-		if err != nil {
-			return err
-		}
-	} else {
-		return errors.New("env variable GCS_CREDENTIALS not set")
-	}
-	return nil
-}
-
 // marshal is helper function that marshals an interface and returns a byte slice.
 func marshal(o interface{}) []byte {
 	if o == nil {
@@ -397,6 +365,7 @@ func marshal(o interface{}) []byte {
 
 // pullFile reads the env variable and writes the contents as a file in the container
 func pullFile() error {
+	glog.Info("downloading gcs credentials...")
 	var gcsData string
 	if gcsData = os.Getenv("GCS_SECRETS"); gcsData == "" {
 		return fmt.Errorf("env variable GCS_SECRET not set")
