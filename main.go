@@ -1,3 +1,6 @@
+// package main implements all the HTTP handles and the programs main function
+// among other things it also pull files from env variables and writes them to files
+// in production.
 package main
 
 import (
